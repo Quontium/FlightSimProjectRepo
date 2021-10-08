@@ -8526,6 +8526,7 @@ GameObject:
   - component: {fileID: 3172941425280260937}
   - component: {fileID: 3172941425280260943}
   - component: {fileID: 3172941425280260942}
+  - component: {fileID: -5089756287788566731}
   m_Layer: 0
   m_Name: Hunting Flight
   m_TagString: Player
@@ -8606,6 +8607,18 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 100
   yaw: 90
+--- !u!114 &-5089756287788566731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957533601513137167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201f6438a4a084b87aadcbda4224b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9004928965923248976
 GameObject:
   m_ObjectHideFlags: 0

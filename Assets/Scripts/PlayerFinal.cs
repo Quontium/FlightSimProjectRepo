@@ -14,55 +14,82 @@ public class PlayerFinal : MonoBehaviour
     private Rigidbody rb;
     //private float movSpeed = 50f;
 
+    Camera mainCamera;
+    IController controller;
 
 
-    void Start()
+    void Awake()
     {
-        glide = 0f;
         rb = GetComponent<Rigidbody>();
+        mainCamera = Camera.main;
+        
+        RegisterControlInput();
+    }
+
+    void RegisterControlInput()
+    {
+        controller = GetComponent<IController>();
+        controller.OnFlightControlInput += ApplyFlightControlInput;
+        controller.OnThrottleInput += ApplyThrottleInput;
+        controller.OnBrakeInput += ApplyBrakeInput;
     }
 
     void FixedUpdate()
     {
-
-        //Camera Follow
+        UpdateCameraFollow();
+        AdjustSpeedBasedOnAttitude();
+    }
+    
+    void UpdateCameraFollow()
+    {
         Vector3 moveCamTo = transform.position - transform.forward * 10.0f + Vector3.up * 1.0f;
         float bias = 0.96f;
-        Camera.main.transform.position = Camera.main.transform.position * bias +
-                                         moveCamTo * (1.0f - bias);
-        Camera.main.transform.LookAt(transform.position + transform.forward * 30.0f);
-
-
+        mainCamera.transform.position = mainCamera.transform.position * bias +
+                                        moveCamTo * (1.0f - bias);
+        mainCamera.transform.LookAt(transform.position + transform.forward * 30.0f);
+    }
+    
+    void AdjustSpeedBasedOnAttitude()
+    {
         speed -= transform.forward.y * Time.deltaTime * 10.0f;
 
         if (speed < 25.0f)
         {
             speed = 25.0f;
         }
-
-        //Flight Movement
-        float roll = Input.GetAxis("Horizontal") * 5.5f;
-        float pitch = Input.GetAxis("Vertical") * 4.0f;
-        float rotation = Input.GetAxis("Yaw") * rotationSpeed;
-        bool throttle = Input.GetKey("space");
-        bool brake = Input.GetKey("b");
-
-        var opposite = -rb.velocity;
-        var brakePower = 500;
-        var brakeForce = opposite.normalized * brakePower;
+    }
+    
+    void ApplyFlightControlInput(Vector3 flightControlInput)
+    {
+        float roll = flightControlInput.z * 5.5f;
+        float pitch = flightControlInput.x * 4.0f;
+        float rotation = flightControlInput.y * rotationSpeed;
 
         rotation *= Time.deltaTime;
 
-        transform.Rotate(0, (rotation + Input.GetAxis("Yaw") * -1.5f), 0);
+        transform.Rotate(0, (rotation + flightControlInput.y * -1.5f), 0);
 
         rb.AddRelativeTorque(Vector3.back * torque * roll);
         rb.AddRelativeTorque(Vector3.right * torque * pitch);
+    }
 
-        if (throttle)
-        {
-            rb.AddRelativeForce(Vector3.forward * thrust);
-            glide = thrust;
-        }
+    void ApplyThrottleInput(bool throttle)
+    {
+        
+
+        if (!throttle) return;
+        
+        rb.AddRelativeForce(Vector3.forward * thrust);
+        glide = thrust;
+
+    }
+
+    void ApplyBrakeInput(bool brake)
+    {
+        Vector3 opposite = -rb.velocity;
+        int brakePower = 500;
+        Vector3 brakeForce = opposite.normalized * brakePower;
+        
         if (brake)
         {
             rb.AddForce(opposite * Time.deltaTime);
@@ -74,11 +101,6 @@ public class PlayerFinal : MonoBehaviour
         {
             rb.AddRelativeForce(Vector3.forward * glide);
             glide *= 0.995f;
-        }
+        }   
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //transform.Translate(Vector3.forward * Time.deltaTime * movSpeed);
-    //movSpeed = movSpeed * -1;
-    //}
 }
