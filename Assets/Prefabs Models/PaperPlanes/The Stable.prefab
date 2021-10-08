@@ -2849,6 +2849,7 @@ GameObject:
   - component: {fileID: 8745314993971411307}
   - component: {fileID: 8745314993971411309}
   - component: {fileID: 8745314993971411308}
+  - component: {fileID: -1586028042976975720}
   m_Layer: 0
   m_Name: The Stable
   m_TagString: Player
@@ -2926,6 +2927,18 @@ MonoBehaviour:
   speed: 45
   rotationSpeed: 90
   yaw: 90
+--- !u!114 &-1586028042976975720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2961848568831493677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8201f6438a4a084b87aadcbda4224b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2961848569068959608
 GameObject:
   m_ObjectHideFlags: 0

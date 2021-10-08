@@ -6466,6 +6466,9 @@ GameObject:
   - component: {fileID: 3858048259960913190}
   - component: {fileID: 3858048259960913184}
   - component: {fileID: 3858048259960913185}
+  - component: {fileID: 2955080789741581693}
+  - component: {fileID: 6797218921545615072}
+  - component: {fileID: -8197159480261698696}
   m_Layer: 0
   m_Name: The Sea Glider
   m_TagString: Player
@@ -6534,7 +6537,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7335671376384868960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7f9e0b11235ec44bac64af024c11c5d, type: 3}
   m_Name: 
@@ -6545,6 +6548,66 @@ MonoBehaviour:
   speed: 45
   rotationSpeed: 130
   yaw: 90
+--- !u!114 &2955080789741581693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335671376384868960}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b0b84395b97e34881c4c8d62e11504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeData: {fileID: 0}
+  rb: {fileID: 0}
+  player: {fileID: 0}
+  Target: {fileID: 0}
+  manager: {fileID: 0}
+  isNPC: 1
+  health: 100
+  isDying: 0
+  moveSpeed: 100
+  rotSpeed: 150
+  torque: 100
+  thrust: 90
+  speed: 90
+  rotationSpeed: 110
+  pitch: 16
+--- !u!114 &6797218921545615072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335671376384868960}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4848e867a18d84fb9aeda49df53337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeData: {fileID: 0}
+  rb: {fileID: 0}
+  player: {fileID: 0}
+  Target: {fileID: 0}
+  manager: {fileID: 0}
+  isNPC: 1
+  health: 100
+  isDying: 0
+--- !u!114 &-8197159480261698696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335671376384868960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3827865843a00c64381cec87164c29a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  procentExtraDamage: 0
 --- !u!1 &7335671376393237904
 GameObject:
   m_ObjectHideFlags: 0

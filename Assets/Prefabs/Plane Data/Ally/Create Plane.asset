@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a736e854d43cabc46a9242c0bfad0ec9, type: 3}
+  m_Name: Create Plane
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8756267471889157426, guid: cf8deb180017e464288eed04e10bd0b5, type: 3}
+  name: Yeet
+  torque: 5
+  thrust: 90000
+  speed: 90
+  rotationSpeed: 110
+  glide: 1
+  pitch: 16
+  throttle: 100

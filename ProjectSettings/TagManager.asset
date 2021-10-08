@@ -4,15 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Enemy2
   - Enemy3
   - Ally1
-  - Ally2
-  - Waypoint
-  - Destructible
-  - Tile
-  - Breadcrumb
+  - Ground
+  - Terrain
+  - Enemy
+  - Ally
+  - AIManager
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -20,14 +19,14 @@ TagManager:
   - 
   - Water
   - UI
-  - MiniMap
   - 
-  - Player
-  - Enemy
-  - Breadcrumb
-  - Waypoint
-  - Bullet
-  - Spit
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
