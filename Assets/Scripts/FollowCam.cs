@@ -35,7 +35,6 @@ public class FollowCam : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(camType);
         if (camType == 0) MainCam();
         else if (camType == 1) RigCam();
         else if (camType == 2) Rig2Cam();

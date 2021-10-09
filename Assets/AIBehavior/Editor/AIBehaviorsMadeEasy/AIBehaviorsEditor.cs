@@ -339,7 +339,7 @@ namespace AIBehaviorEditor
 			}
 			else
 			{
-				statesDictionary["Attack"] = typeof(AttackState);
+				statesDictionary["Attack"] = typeof(AIBehavior.AttackState);
 			}
 
 			statesDictionary["Defend"] = typeof(DefendState);

@@ -1,33 +1,26 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-public class AIController : MonoBehaviour, IController
+public abstract class AIController : MonoBehaviour, IController
 {
     public event Action<Vector3> OnFlightControlInput;
     public event Action<bool> OnThrottleInput;
     public event Action<bool> OnBrakeInput;
 
     protected Vector3 targetPosition;
-    protected Vector3 directionToTarget;
-    protected Vector3 spawnPosition;
-    protected float angleToTarget;
-
     protected event Action OnReachedTarget;
     
+    Vector3 directionToTarget;
+    float angleToTarget;
+
+    bool brakeApplied;
+    
+    
     [SerializeField] protected float targetRadius = 100f;
-    [SerializeField] protected float angleFromTargetToAccelerate = 45f;
+    [SerializeField] protected float angleFromTargetToAccelerate = 28f;
 
-    void Awake()
-    {
-        spawnPosition = transform.position;
-        SetTarget(spawnPosition);
-    }
-
-    protected void SetTarget(Vector3 targetPosition)
-    {
-        this.targetPosition = targetPosition;
-    }
-
+    
     void FixedUpdate()
     {
         directionToTarget = GetTargetDirection();
@@ -35,7 +28,7 @@ public class AIController : MonoBehaviour, IController
         
         OrientTowardsTarget();
         AccelerateIfFacingTarget();
-        BrakeIfFacingAwayFromTarget();
+        OnBrakeInput?.Invoke(brakeApplied);
 
         if (TargetWithinRange()) OnReachedTarget?.Invoke();
     }
@@ -66,9 +59,20 @@ public class AIController : MonoBehaviour, IController
         OnThrottleInput?.Invoke(facingTarget);
     }
     
-    void BrakeIfFacingAwayFromTarget()
+    protected void Brake()
     {
-        //bool facingAway = angleToTarget > 120f;
-        OnBrakeInput?.Invoke(false);
+        ApplyBrakes();
+    }
+
+    IEnumerator ApplyBrakes()
+    {
+        brakeApplied = true;
+        yield return new WaitForSeconds(2);
+        brakeApplied = false;
+    }
+    
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(targetPosition, targetRadius);
     }
 }
