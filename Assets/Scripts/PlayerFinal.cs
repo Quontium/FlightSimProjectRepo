@@ -36,19 +36,9 @@ public class PlayerFinal : MonoBehaviour
 
     void FixedUpdate()
     {
-        UpdateCameraFollow();
         AdjustSpeedBasedOnAttitude();
     }
-    
-    void UpdateCameraFollow()
-    {
-        Vector3 moveCamTo = transform.position - transform.forward * 10.0f + Vector3.up * 1.0f;
-        float bias = 0.96f;
-        mainCamera.transform.position = mainCamera.transform.position * bias +
-                                        moveCamTo * (1.0f - bias);
-        mainCamera.transform.LookAt(transform.position + transform.forward * 30.0f);
-    }
-    
+
     void AdjustSpeedBasedOnAttitude()
     {
         speed -= transform.forward.y * Time.deltaTime * 10.0f;
@@ -67,8 +57,8 @@ public class PlayerFinal : MonoBehaviour
 
         rotation *= Time.deltaTime;
 
-        transform.Rotate(0, (rotation + flightControlInput.y * -1.5f), 0);
-
+        //transform.Rotate(0, (rotation + flightControlInput.y * -1.5f), 0);
+        rb.AddRelativeTorque(Vector3.up * torque * rotation);
         rb.AddRelativeTorque(Vector3.back * torque * roll);
         rb.AddRelativeTorque(Vector3.right * torque * pitch);
     }
