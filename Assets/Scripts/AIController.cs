@@ -14,7 +14,8 @@ public class AIController : MonoBehaviour, IController
 
     protected event Action OnReachedTarget;
     
-    [SerializeField] float targetRange = 25f;
+    [SerializeField] protected float targetRadius = 100f;
+    [SerializeField] protected float angleFromTargetToAccelerate = 45f;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class AIController : MonoBehaviour, IController
         SetTarget(spawnPosition);
     }
 
-    protected virtual void SetTarget(Vector3 targetPosition)
+    protected void SetTarget(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
     }
@@ -41,7 +42,7 @@ public class AIController : MonoBehaviour, IController
 
     Vector3 GetTargetDirection() => (targetPosition - transform.position).normalized;
     float GetAngleToTarget() => Vector3.Angle(transform.forward, directionToTarget);
-    bool TargetWithinRange() => (targetPosition - transform.position).magnitude < targetRange;
+    bool TargetWithinRange() => (targetPosition - transform.position).sqrMagnitude < targetRadius * targetRadius;
     
 
     void OrientTowardsTarget()
@@ -53,14 +54,15 @@ public class AIController : MonoBehaviour, IController
     Vector3 GetTorqueVector()
     {
         Vector3 torqueVector = Vector3.Cross(transform.forward, directionToTarget);
-        torqueVector.z = Vector3.Cross(transform.up, Vector3.down).z;
         torqueVector = transform.InverseTransformDirection(torqueVector);
+        torqueVector.z = -(transform.rotation.eulerAngles.z / 180 - 1 - torqueVector.y * 2);
+
         return torqueVector;
     }
 
     void AccelerateIfFacingTarget()
     {
-        bool facingTarget = angleToTarget < 50f;
+        bool facingTarget = angleToTarget < angleFromTargetToAccelerate;
         OnThrottleInput?.Invoke(facingTarget);
     }
     
