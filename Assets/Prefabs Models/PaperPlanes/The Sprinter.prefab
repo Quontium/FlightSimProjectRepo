@@ -7633,7 +7633,7 @@ MonoBehaviour:
   thrust: 110000
   speed: 80
   rotationSpeed: 90
-  yaw: 90
+  aerodynamicProperties: {fileID: 11400000, guid: 861be44c575c59940a0d7936b5024f6b, type: 2}
 --- !u!114 &-1218063470004189874
 MonoBehaviour:
   m_ObjectHideFlags: 0
