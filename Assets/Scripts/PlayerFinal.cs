@@ -12,6 +12,7 @@ public class PlayerFinal : MonoBehaviour
     private float glide;
     public float yaw = 90f;
     private Rigidbody rb;
+    public Rigidbody Rigidbody { get; internal set; }
     //private float movSpeed = 50f;
 
     Camera mainCamera;

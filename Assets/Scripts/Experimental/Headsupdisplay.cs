@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HeadsUpDisplay : MonoBehaviour
 {
-	public Airplane plane;
+	public PlayerFinal plane;
 
 	public Image fpm;
 	public Image cross;
