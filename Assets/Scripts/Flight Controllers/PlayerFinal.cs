@@ -10,9 +10,10 @@ public class PlayerFinal : MonoBehaviour
     public float speed = 90.0f;
     public float rotationSpeed = 100.0f;
     private float glide;
-    public float yaw = 90f;
     private Rigidbody rb;
     //private float movSpeed = 50f;
+
+    [SerializeField] AerodynamicProperties aerodynamicProperties;
 
     Camera mainCamera;
     IController controller;
